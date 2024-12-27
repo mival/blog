@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
   before_action :set_post, only: %i[ show edit update destroy ]
 
+  layout "posts"
+
   # GET /posts or /posts.json
   def index
     @posts = Post.all
