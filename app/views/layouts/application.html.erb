@@ -24,7 +24,21 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <nav class="navbar">
+      <%= link_to "Home", root_path %>
+      <%= link_to "Login", new_session_path unless authenticated? %>
+      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+    </nav>
+
+    <% if alert = flash[:alert] %>
+      <div class="m-5"><p class="alert" id="alert"><%= alert %></p></div>
+    <% end %>
+
+    <% if notice = flash[:notice] %>
+      <div class="m-5"><p class="notice" id="notice"><%= notice %></p></div>
+    <% end %>
+
+    <main class="container mx-auto mt-20 mb-10 px-5 flex">
       <%= yield %>
     </main>
   </body>
